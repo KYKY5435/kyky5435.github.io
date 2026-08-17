@@ -11,6 +11,21 @@
         <h1>KYKY5435</h1>
         
         <p>yes</p>
+        
+        <p id="text">Wait</p>
+        
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showLocation)
+                } else {
+                    $("#text").text("give me your location")
+                }
+            }
+            function showLocation(arg) {
+                $("#text").text("I know your location: " + arg)
+            }
+        </script>
     
     </body>
 
