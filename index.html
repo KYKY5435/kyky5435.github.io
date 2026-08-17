@@ -18,13 +18,13 @@
             getLocation()
             function getLocation() {
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showLocation)
+                    navigator.geolocation.getCurrentPosition(showLocation, () => {$("#text").text("give me your location")})
                 } else {
-                    $("#text").text("give me your location")
+                    $("#text").text("how you not have gps")
                 }
             }
             function showLocation(arg) {
-                $("#text").text("I know your location: " + arg)
+                $("#text").text("I know your location: " + arg.coords.latitude + ", " + arg.coords.longitude)
             }
         </script>
     
