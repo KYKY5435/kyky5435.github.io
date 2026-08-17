@@ -15,6 +15,7 @@
         <p id="text">Wait</p>
         
         <script>
+            getLocation()
             function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showLocation)
