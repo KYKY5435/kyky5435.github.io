@@ -18,7 +18,7 @@ function nextImage(go_prev, current_image) {
     index = ( index - 1 ) % image.legnth
   }
 
-  return images[newIndex]
+  return images[index]
 }
 
 function image_carousel_main() {
