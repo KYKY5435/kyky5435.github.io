@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: arial;
+}
+
+img.noAntiAliasing {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+body {
+  padding: 1%
+}
