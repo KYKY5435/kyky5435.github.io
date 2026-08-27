@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Save Cookies Example</title>
+</head>
+<body>
+
+    <h2>Save Data to a Cookie</h2>
+    
+    <!-- Input box and button for the user -->
+    <input type="text" id="usernameInput" placeholder="Enter your name">
+    <button onclick="saveMyCookie()">Save Cookie</button>
+
+    <script>
+        function saveMyCookie() {
+            // 1. Get the value from the HTML input box
+            const userValue = document.getElementById("usernameInput").value;
+            
+            // 2. Set an expiration date (e.g., 7 days from now)
+            const date = new Date();
+            date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            
+            // 3. Save the cookie with a name, value, expiration, and path
+            document.cookie = "username=" + encodeURIComponent(userValue) + "; " + expires + "; path=/";
+            
+            alert("Cookie saved successfully!");
+        }
+    </script>
+
+</body>
+</html>
