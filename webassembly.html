@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clang WebAssembly Demo</title>
+</head>
+<body>
+    <h1>Open your browser console (F12) to see the result!</h1>
+
+    <script type="module">
+        async function runWasm() {
+            // Stream, compile, and instantiate the compiled .wasm file
+            const response = await WebAssembly.instantiateStreaming(fetch('./math.wasm'));
+            
+            // Extract the exported functions
+            const { add } = response.instance.exports;
+
+            // Call the C function from JavaScript
+            console.log("Result from C 'add(15, 27)':", add(15, 27));
+        }
+
+        runWasm().catch(console.error);
+    </script>
+</body>
+</html>
