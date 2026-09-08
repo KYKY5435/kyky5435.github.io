@@ -2,26 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Clang WebAssembly Demo</title>
+    <title>WASI C++ Strings in HTML</title>
 </head>
 <body>
-    <h1>Open your browser console (F12) to see the result!</h1>
+    <button id="runBtn">Run Wasm</button>
+    <p id="output"></p>
 
-    <script type="module">
-        async function runWasm() {
-            // Stream, compile, and instantiate the compiled .wasm file
-            const response = await WebAssembly.instantiateStreaming(fetch('./math.wasm'));
+    <script>
+        async function loadWasm() {
+            const response = await fetch('module.wasm');
+            const buffer = await response.arrayBuffer();
             
-            // Extract the exported functions
-            const { add } = response.instance.exports;
+            // Provide minimal WASI imports if required by libc/runtime
+            const importObject = {
+                wasi_snapshot_preview1: {
+                    proc_exit: (code) => {},
+                    fd_write: (fd, iovs, iovsLen, nwritten) => 0
+                }
+            };
 
-            // Call the C function from JavaScript
-            console.log("Result from C 'add(15, 27)':", add(15, 27));
-            
-            alert(add(7,7))
+            const { instance } = await WebAssembly.instantiate(buffer, importObject);
+            const exports = instance.exports;
+            const memory = exports.memory;
+
+            // Helper to read a C-style string from Wasm memory
+            function readString(ptr) {
+                const memoryBytes = new Uint8Array(memory.buffer);
+                let end = ptr;
+                while (memoryBytes[end] !== 0) end++;
+                return new TextDecoder().decode(memoryBytes.subarray(ptr, end));
+            }
+
+            // Helper to write a string into Wasm memory
+            function writeString(str) {
+                const encoded = new TextEncoder().encode(str + '\0');
+                const ptr = exports.allocate_string(encoded.length);
+                const memoryBytes = new Uint8Array(memory.buffer);
+                memoryBytes.set(encoded, ptr);
+                return ptr;
+            }
+
+            document.getElementById('runBtn').onclick = () => {
+                const inputStr = "World";
+                const inputPtr = writeString(inputStr);
+
+                // Call C++ function
+                const outputPtr = exports.process_string(inputPtr);
+                const resultText = readString(outputPtr);
+
+                // Display in HTML
+                document.getElementById('output').innerText = resultText;
+
+                // Cleanup memory
+                exports.free_string(inputPtr);
+                exports.free_string(outputPtr);
+            };
         }
 
-        runWasm().catch(console.error);
+        loadWasm();
     </script>
 </body>
 </html>
