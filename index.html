@@ -35,8 +35,11 @@
         
         <script>
             const minecraftModel = document.querySelector('#minecraft-model');
-            minecraftModel.appendAnimation("board");
-            minecraftModel.appendAnimation("tilt");
+            minecraftModel.addEventListener('load', () => {
+                console.log('Available animations:', minecraftModel.availableAnimations);
+                minecraftModel.appendAnimation("board");
+                minecraftModel.appendAnimation("tilt");
+            });
         </script>
     
     </body>
