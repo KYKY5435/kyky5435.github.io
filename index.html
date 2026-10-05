@@ -17,7 +17,7 @@
         <br>
         <h3><p> Connections: </p></h3>
         <p>Minecraft: <b><i> KYKY5435 </i></b> </p>
-        <model-viewer 
+        <model-viewer id="minecraft-model"
             src="https://kyky5435.github.io/MC/Skin/model.gltf" 
             alt="A 3D interactive model" 
             ar 
@@ -34,17 +34,9 @@
         </a>
         
         <script>
-            getLocation()
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showLocation, () => {$("#text").text("give me your location")})
-                } else {
-                    $("#text").text("how you not have gps")
-                }
-            }
-            function showLocation(arg) {
-                $("#text").text("I know your location: " + arg.coords.latitude + ", " + arg.coords.longitude)
-            }
+            const minecraftModel = document.querySelector('#minecraft-model');
+            minecraftModel.appendAnimation("board");
+            minecraftModel.appendAnimation("tilt");
         </script>
     
     </body>
