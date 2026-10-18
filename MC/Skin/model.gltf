@@ -2908,6 +2908,7 @@
             "name": "texture_0.png"
         },
         {
+            "sampler": 0,
             "source": 1
         }
     ],
