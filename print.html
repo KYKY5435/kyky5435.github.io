@@ -14,14 +14,13 @@
             const queryString = window.location.search
             const urlParams = new URLSearchParams(queryString)
 
-            text.append(`<p>${urlParams.get("email")}</p><br>`)
-            text.append(`<p>${urlParams.get("location")}</p><br>`)
+            text.insertAdjacentHTML('beforeend', `${urlParams.get("email")} <br>`)
+            text.insertAdjacentHTML('beforeend',`${urlParams.get("location")} <br>`)
 
             const today = new Date();
             console.log(today.toDateString()); 
-            text.append(`<p>${today.toDateString()}</p><br>`)
-            text.append(`<p>${today.toDateString()}</p><br>`)
-            text.append(`<p>${btoa(btoa(urlParams.get("email") + " " + urlParams.get("location") + " " + today.toDateString()))}</p><br>`)
+            text.insertAdjacentHTML('beforeend',`${today.toDateString()} <br>`)
+            text.insertAdjacentHTML('beforeend',`${btoa(btoa(urlParams.get("email") + " " + urlParams.get("location") + " " + today.toDateString()))} <br>`)
         </script>
     
     </body>
