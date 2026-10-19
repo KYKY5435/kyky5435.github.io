@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/main.css">
+        <title>print</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>    
+        <div id="a"></div>
+        
+        <script>
+            const text = document.querySelector('#a')
+            const queryString = window.location.search
+            const urlParams = new URLSearchParams(queryString)
+
+            text.append(`<p>$(urlParams.get("email"))</p>`)
+            text.append(`<p>$(urlParams.get("location"))</p>`)
+
+            const today = new Date();
+            console.log(today.toDateString()); 
+            text.append(`<p>$(today.toDateString())</p>`)
+        </script>
+    
+    </body>
+
+</html>
