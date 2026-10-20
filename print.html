@@ -5,6 +5,20 @@
         <link rel="stylesheet" href="/main.css">
         <title>print</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                const htmlContent = document.documentElement.innerText;
+                const blob = new Blob([htmlContent], { type: 'text/plain' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'pass.txt';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            });
+        </script>
     </head>
     <body>    
         <div id="a"></div>
@@ -22,6 +36,8 @@
             text.insertAdjacentHTML('beforeend',`${today.toDateString()} <br>`)
             text.insertAdjacentHTML('beforeend',`${btoa(btoa(urlParams.get("email") + " " + urlParams.get("location") + " " + today.toDateString()))} <br>`)
         </script>
+
+        
     
     </body>
 
