@@ -38,7 +38,7 @@
         
         <script>
             const minecraftModel = document.querySelector('#minecraft-model');
-            minecraftModel.addEventListener('load', () => {
+            minecraftModel.addEventListener('load', await () => {
                 console.log('Available animations:', minecraftModel.availableAnimations);
                 minecraftModel.appendAnimation("board");
                 minecraftModel.appendAnimation("tilt");
@@ -53,8 +53,8 @@
                 } else if (month === 11) {
                     // to do
                 }
-                const material = modelViewer.model.materials[0]; 
-                const newTexture = await modelViewer.createTexture(defaultTexture);
+                const material = minecraftModel.model.materials[0]; 
+                const newTexture = await minecraftModel.createTexture(defaultTexture);
                 material.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
             });
         </script>
