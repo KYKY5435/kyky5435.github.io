@@ -53,9 +53,18 @@
                 } else if (month === 11) {
                     // to do
                 }
-                const material = minecraftModel.model.materials[0]; 
+                const material0 = minecraftModel.model.materials[0]; 
+                const material1 = minecraftModel.model.materials[1]; 
                 const newTexture = await minecraftModel.createTexture(defaultTexture);
-                material.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
+
+                newTexture.sampler.setMagFilter(9728);
+                newTexture.sampler.setMinFilter(9728);
+
+                newTexture.sampler.setWrapS(33071)
+                newTexture.sampler.setWrapT(33071)
+
+                material0.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
+                material1.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
             });
         </script>
     
