@@ -48,10 +48,11 @@
                 const date = today.getDate();
                 let defaultTexture = "MC/Skin/skin.png";
     
-                if (month === 9 || month == 10) {
+                if (month == 9 || month == 10) {
                     defaultTexture = "MC/Skin/halloween.png"; // October 31st
-                } else if (month === 11) {
-                    // to do
+                } 
+                if (month == 11 || month = 0) {
+                    defaultTexture = "MC/Skin/christmas.png";
                 }
                 const material0 = minecraftModel.model.materials[0]; 
                 const material1 = minecraftModel.model.materials[1]; 
