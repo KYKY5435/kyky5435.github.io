@@ -1,0 +1,54 @@
+<html><head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <meta name="google-site-verification" content="_y2EtMzEr9AAzWL4-j-WXoo--WjcENHBXj-Grr7cXuY">
+        
+        <link rel="stylesheet" href="/main.css">
+        <title>Technical</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
+        <script src="/basis.js"></script>
+        <script src="/image_slideshow.js"></script>
+    </head>
+    <body>    
+        <h1>Technical</h1>
+        <model-viewer id="bg" src="https://kyky5435.github.io/MC/Skin/model.gltf" alt="A 3D interactive model" ar="none" camera-controls="none" auto-rotate="none" interaction-prompt="none" shadow-intensity="1" ar-status="not-presenting">
+        </model-viewer>
+        
+      <script>
+            const minecraftModel = document.querySelector('#minecraft-model');
+            minecraftModel.addEventListener('load', async () => {
+                console.log('Available animations:', minecraftModel.availableAnimations);
+                minecraftModel.appendAnimation("board");
+                minecraftModel.appendAnimation("tilt");
+                //time based skins
+                const today = new Date();
+                const month = today.getMonth(); // 0 = January, 11 = December
+                const date = today.getDate();
+                let defaultTexture = "MC/Skin/skin.png";
+    
+                if (month == 9) {
+                    defaultTexture = "MC/Skin/halloween.png"; // October 31st
+                } 
+                if (month == 11) {
+                    defaultTexture = "MC/Skin/christmas.png";
+                }
+                const material0 = minecraftModel.model.materials[0]; 
+                const material1 = minecraftModel.model.materials[1]; 
+                const newTexture = await minecraftModel.createTexture(defaultTexture);
+
+                newTexture.sampler.setMagFilter(9728);
+                newTexture.sampler.setMinFilter(9728);
+
+                newTexture.sampler.setWrapS(33071)
+                newTexture.sampler.setWrapT(33071)
+
+                material0.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
+                material1.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
+            });
+        </script>
+    
+    
+
+
+</body></html>
