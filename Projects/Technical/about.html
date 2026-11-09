@@ -9,11 +9,28 @@
         <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
         <script src="/basis.js"></script>
         <script src="/image_slideshow.js"></script>
+
+        <style>
+                .site-background {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        background-color: #000;
+                        background-size: cover;
+                        background-position: center;
+                        z-index: -1;
+                }
+        </style>
     </head>
-    <body>    
+    <body>
+            <div class="site-background">
+                    <model-viewer id="model" src="https://kyky5435.github.io/Projects/Technical/model/bg_model.gltf" alt="A 3D interactive model" ar="none" camera-controls="none" interaction-prompt="none" shadow-intensity="1" ar-status="not-presenting">
+                    </model-viewer>
+            </div>
         <h1>Technical</h1>
-        <model-viewer id="bg" src="https://kyky5435.github.io/MC/Skin/model.gltf" alt="A 3D interactive model" ar="none" camera-controls="none" auto-rotate="none" interaction-prompt="none" shadow-intensity="1" ar-status="not-presenting">
-        </model-viewer>
+        
         
       <script>
             const minecraftModel = document.querySelector('#minecraft-model');
