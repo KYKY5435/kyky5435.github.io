@@ -11,6 +11,9 @@
         <script src="/basis.js"></script>
         <script src="/image_slideshow.js"></script>
 
+        <!-- fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Momo Trust Display">
+
         <style>
                 .site-background {
                         position: fixed;
@@ -21,11 +24,51 @@
                         background-color: #fff;
                         background-size: cover;
                         background-position: center;
-                        z-index: -1;
+                        z-index: -2;
+                }
+                .scrolling {
+                        position: relative;
+                        z-index: 1;
+                }
+                .site-foreground-background {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1;
+                }
+                .site-foreground {
+                        position: relative;
+                        z-index: 2;
+                        width: 100%;
+                        height: 100%;
+
                 }
                 model-viewer {
                         width: 100%;
                         height: 100%;
+                }
+                .title {
+                        font-size: 48px;
+                        font-weight: bold;
+                        background: linear-gradient(to right, #c90000, #7d0000);
+                        
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        
+                        -webkit-text-fill-color: transparent; 
+                        color: transparent;
+                        
+                        text-align: center; 
+                        vertical-align: middle;
+
+                        padding: 200px;
+                        
+                        font-family: "Momo Trust Display";
+                        
+                        width: 100%;
+                        height: 50px;
                 }
 
         </style>
@@ -44,8 +87,27 @@
                             >
                     </model-viewer>
             </div>
-        <h1>Technical</h1>
-        
+        <div class="scrolling">
+        <div class="site-foreground">
+                <h1 class="title">Technical</h1>
+        </div>
+        <div class="site-foreground-background">
+                <div style="
+                        position: absolute;
+                        place-self: center;
+                        
+                        top: 200px;
+                        width: 240px;
+                        height: 60px;
+                        background-color: #fff;
+
+                        border: 2px solid black;
+                        
+                        ">
+                        
+                </div>
+        </div>
+        </div>
         
       <script>
             const model = document.querySelector('#model');
