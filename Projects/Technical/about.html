@@ -20,7 +20,7 @@
                         background-color: #fff;
                         background-size: cover;
                         background-position: center;
-                        z-index: 100;
+                        z-index: -1;
                 }
                 model-viewer {
                         width: 100%;
@@ -50,7 +50,7 @@
             model.addEventListener('load', async () => {
                 console.log('Available animations:', model.availableAnimations);
                 model.appendAnimation("movement");
-            });*/
+            });
         </script>
     
     
