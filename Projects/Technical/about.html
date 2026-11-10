@@ -15,54 +15,42 @@
                         position: fixed;
                         top: 0;
                         left: 0;
-                        width: 100vw;
-                        height: 100vh;
-                        background-color: #000;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #fff;
                         background-size: cover;
                         background-position: center;
-                        z-index: -1;
+                        z-index: 100;
                 }
+                model-viewer {
+                        width: 100%;
+                        height: 100%;
+                }
+
         </style>
     </head>
     <body>
             <div class="site-background">
-                    <model-viewer id="model" src="https://kyky5435.github.io/Projects/Technical/model/bg_model.gltf" alt="A 3D interactive model" ar="none" camera-controls="none" interaction-prompt="none" shadow-intensity="1" ar-status="not-presenting">
+                    <model-viewer id="model" src="https://kyky5435.github.io/Projects/Technical/model/bg_model.gltf" alt="A 3D interactive model" ar="none" camera-controls="none" interaction-prompt="none" shadow-intensity="0" ar-status="not-presenting"
+  camera-controls
+
+                            camera-target="0m 0m 0m"
+  camera-orbit="55deg 70deg 2000m"
+  field-of-view="5deg"
+  min-camera-orbit="auto auto 0.1m"
+  min-field-of-view="5deg"
+                            >
                     </model-viewer>
             </div>
         <h1>Technical</h1>
         
         
       <script>
-            const minecraftModel = document.querySelector('#minecraft-model');
-            minecraftModel.addEventListener('load', async () => {
-                console.log('Available animations:', minecraftModel.availableAnimations);
-                minecraftModel.appendAnimation("board");
-                minecraftModel.appendAnimation("tilt");
-                //time based skins
-                const today = new Date();
-                const month = today.getMonth(); // 0 = January, 11 = December
-                const date = today.getDate();
-                let defaultTexture = "MC/Skin/skin.png";
-    
-                if (month == 9) {
-                    defaultTexture = "MC/Skin/halloween.png"; // October 31st
-                } 
-                if (month == 11) {
-                    defaultTexture = "MC/Skin/christmas.png";
-                }
-                const material0 = minecraftModel.model.materials[0]; 
-                const material1 = minecraftModel.model.materials[1]; 
-                const newTexture = await minecraftModel.createTexture(defaultTexture);
-
-                newTexture.sampler.setMagFilter(9728);
-                newTexture.sampler.setMinFilter(9728);
-
-                newTexture.sampler.setWrapS(33071)
-                newTexture.sampler.setWrapT(33071)
-
-                material0.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
-                material1.pbrMetallicRoughness.baseColorTexture.setTexture(newTexture);
-            });
+            const model = document.querySelector('#model');
+            model.addEventListener('load', async () => {
+                console.log('Available animations:', model.availableAnimations);
+                model.appendAnimation("movement");
+            });*/
         </script>
     
     
