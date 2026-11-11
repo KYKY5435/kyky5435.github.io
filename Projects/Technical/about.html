@@ -89,18 +89,26 @@
             </div>
         <div class="scrolling">
         <div class="site-foreground">
-                <h1 class="title">Technical</h1>
+                <model-viewer id="title_model" src="https://kyky5435.github.io/Projects/Technical/model/title.gltf" alt="A 3D interactive model" interaction-prompt="none" shadow-intensity="0" ar-status="not-presenting"
+                        camera-controls
+                        camera-target="0m 0m 0m"
+                        camera-orbit="170deg 100deg 720m"
+                        field-of-view="5deg"
+                        min-camera-orbit="auto auto 0.1m"
+                        min-field-of-view="5deg"
+                            >
+                    </model-viewer>
         </div>
         <div class="site-foreground-background">
                 <div style="
                         position: absolute;
-                        top: 200px;
+                        top: 180px;
                         place-self: center;
 
                         left: 50%; transform: translateX(-50%);
                         
-                        width: 240px;
-                        height: 60px;
+                        width: 600px;
+                        height: 200px;
                         background-color: #fff;
 
                         border: 2px solid black;
@@ -112,11 +120,16 @@
         </div>
         
       <script>
-            const model = document.querySelector('#model');
-            model.addEventListener('load', async () => {
+            const bg_model = document.querySelector('#model');
+            bg_model.addEventListener('load', async () => {
                 console.log('Available animations:', model.availableAnimations);
                 model.appendAnimation("movement");
             });
+              const title_model = document.querySelector("#title_model")
+              title_model.addEventListener('load', async () => {
+                console.log('Available animations:', title_model.availableAnimations);
+                title_model.appendAnimation("loop");
+              })
         </script>
     
     
